@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class Controller {
 
@@ -18,6 +19,9 @@ public class Controller {
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
+
+    @FXML // fx:id="textField"
+    private TextField textField; // Value injected by FXMLLoader
 
     @FXML // fx:id="nine"
     private Button nine; // Value injected by FXMLLoader
@@ -76,25 +80,57 @@ public class Controller {
     @FXML // fx:id="five"
     private Button five; // Value injected by FXMLLoader
 
+    private boolean decimalClick = false;
+    private boolean generalClick = false;
+    private double prevValue;
+    private String general;
+
     @FXML
     void handlerDigitAction(ActionEvent event) {
+        if (generalClick == true) {
+            general = ((Button)event.getSource()).getText();
+            textField.setText("0");
+        }
 
+        String digitObject = ((Button)event.getSource()).getText();
+        String oldText = textField.getText();
+        String newText = oldText+digitObject;
+        textField.setText(newText);
     }
 
     @FXML
     void handlerGeneralAction(ActionEvent event) {
-
+        general = ((Button)event.getSource()).getText();
+        prevValue = Double.parseDouble(textField.getText());
+        generalClick = true;
     }
 
-
     @FXML
-    void handlerDecimeAction(ActionEvent event) {
-
+    void handlerDecimalAction(ActionEvent event) {
+        if (decimalClick == false) {
+            String decimalObject = ((Button)event.getSource()).getText();
+            String oldText = textField.getText();
+            String newText = oldText+decimalObject;
+            textField.setText(newText);
+            decimalClick = true;
+        }
     }
 
     @FXML
     void handlerEqualAction(ActionEvent event) {
+        switch (general){
+            case "+":
+                textField.setText(String.valueOf((Double.parseDouble(textField.getText()) + prevValue)));
+            case "-":
+                textField.setText(String.valueOf((Double.parseDouble(textField.getText()) - prevValue)));
+            case "*":
+                textField.setText(String.valueOf((Double.parseDouble(textField.getText()) * prevValue)));
+            case "/":
+                textField.setText(String.valueOf((Double.parseDouble(textField.getText()) / prevValue)));
+        }
 
+        generalClick = false;
+        decimalClick = true;
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
