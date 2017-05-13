@@ -5,19 +5,24 @@
 }
 .text-field{
     -fx-font-size: 23pt;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
 }
-.button{
+.button, .button:focused{
     -fx-background-color: #E8E8E8;
     -fx-border-radius: 0;
+    -fx-background-radius: 0;
 }
-.button-blue{
+.button-blue, .button-blue:focused{
     -fx-background-color: #7CAFC2;
     -fx-text-fill: #F8F8F8;
     -fx-border-radius: 0;
+    -fx-background-radius: 0;
 }
-.button-orange{
+.button-orange, .button-orange:focused{
     -fx-background-color: orange;
     -fx-text-fill: #F8F8F8;
     -fx-font-size: 15pt;
     -fx-border-radius: 0;
+    -fx-background-radius: 0;
 }
