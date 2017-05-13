@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -8,10 +10,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <GridPane layoutY="82.0" prefHeight="320.0" prefWidth="260.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="82.0">
+      <GridPane layoutY="82.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -21,32 +22,113 @@
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="AC" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="+/-" GridPane.columnIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="7" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="8" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="4" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="1" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="130.0" text="0" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="\%" GridPane.columnIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="/" GridPane.columnIndex="3" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="9" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="x" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="3" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="+" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="," GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="65.0" text="=" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Button fx:id="zero" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerDigitAction" prefHeight="65.0" prefWidth="130.0" text="0" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="ac" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerGeneralAction" prefHeight="65.0" prefWidth="65.0" styleClass="button-blue" text="AC" textAlignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="pm" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerGeneralAction" prefHeight="65.0" prefWidth="65.0" styleClass="button-blue" text="+/-" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="seven" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerDigitAction" prefHeight="65.0" prefWidth="65.0" text="7" textAlignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="eight" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerDigitAction" prefHeight="65.0" prefWidth="65.0" text="8" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="four" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerDigitAction" prefHeight="65.0" prefWidth="65.0" text="4" textAlignment="CENTER" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="five" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerDigitAction" prefHeight="65.0" prefWidth="65.0" text="5" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="one" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerDigitAction" prefHeight="65.0" prefWidth="65.0" text="1" textAlignment="CENTER" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="percent" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerGeneralAction" prefHeight="65.0" prefWidth="65.0" styleClass="button-blue" text="\%" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="div" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerGeneralAction" prefHeight="65.0" prefWidth="65.0" styleClass="button-orange" text="/" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="nine" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerDigitAction" prefHeight="65.0" prefWidth="65.0" text="9" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="mul" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerGeneralAction" prefHeight="65.0" prefWidth="65.0" styleClass="button-orange" text="x" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="six" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerDigitAction" prefHeight="65.0" prefWidth="65.0" text="6" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="min" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerGeneralAction" prefHeight="65.0" prefWidth="65.0" styleClass="button-orange" text="-" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="two" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerDigitAction" prefHeight="65.0" prefWidth="65.0" text="2" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="three" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerDigitAction" prefHeight="65.0" prefWidth="65.0" text="3" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="plus" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerGeneralAction" prefHeight="65.0" prefWidth="65.0" styleClass="button-orange" text="+" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="dot" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerDecimeAction" prefHeight="65.0" prefWidth="65.0" text="," textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="eq" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlerEqualAction" prefHeight="65.0" prefWidth="65.0" styleClass="button-orange" text="=" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <TextField alignment="CENTER_RIGHT" prefHeight="65.0" prefWidth="260.0" text="0" GridPane.columnSpan="4">
+               <font>
+                  <Font size="45.0" />
+               </font>
+            </TextField>
          </children>
       </GridPane>
-      <TextField layoutY="-1.0" prefHeight="68.0" prefWidth="260.0" AnchorPane.bottomAnchor="315.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>
