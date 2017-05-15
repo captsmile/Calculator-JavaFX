@@ -1,28 +1,54 @@
 .root{
-    -fx-background-color: #383838;
     -fx-font-size: 14pt;
     -fx-text-fill: black;
+    -fx-padding: 5;
+    -fx-border-style: none;
+    -fx-border-width: 0;
+    -fx-border-insets: 0;
+    -button-color: #7d7d7d;
+    -button-blue-color: #7CAFC2;
+    -button-orange-color: orange;
 }
 .text-field{
     -fx-font-size: 23pt;
     -fx-border-radius: 0;
     -fx-background-radius: 0;
 }
-.button, .button:focused{
-    -fx-background-color: #E8E8E8;
-    -fx-border-radius: 0;
+.button{
+    -fx-background-color: -button-color;
     -fx-background-radius: 0;
 }
-.button-blue, .button-blue:focused{
-    -fx-background-color: #7CAFC2;
+
+.button-blue{
+    -fx-background-color: -button-blue-color;
     -fx-text-fill: #F8F8F8;
-    -fx-border-radius: 0;
     -fx-background-radius: 0;
 }
-.button-orange, .button-orange:focused{
-    -fx-background-color: orange;
+
+.button-orange{
+    -fx-background-color: -button-orange-color;
     -fx-text-fill: #F8F8F8;
     -fx-font-size: 15pt;
-    -fx-border-radius: 0;
     -fx-background-radius: 0;
+}
+
+.button:hover{
+    -fx-background-color: derive(-button-color, 20%);
+}
+.button:pressed{
+    -fx-background-color: derive(-button-color, 50%);
+}
+
+.button-blue:hover{
+    -fx-background-color: derive(-button-blue-color, 20%);
+}
+.button-blue:pressed{
+    -fx-background-color: derive(-button-blue-color, 50%);
+}
+
+.button-orange:hover{
+    -fx-background-color: derive(-button-orange-color, 20%);
+}
+.button-orange:pressed{
+    -fx-background-color: derive(-button-orange-color, 50%);
 }

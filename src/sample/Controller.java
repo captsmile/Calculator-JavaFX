@@ -9,13 +9,18 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 
 public class Controller {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
+
+    @FXML
+    private GridPane gridPane;
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
@@ -81,12 +86,17 @@ public class Controller {
     private Button five; // Value injected by FXMLLoader
 
     private boolean decimalClick = false;
-    private boolean generalClick = false;
-    private double prevValue = 0;
+    private boolean eraseTextField = false;
+    private double firstDouble = 0;
     private String general = "";
 
     @FXML
-    void handlerDigitAction(ActionEvent event) {
+    void handlerDigitAction(ActionEvent event) { //нажатие кнопок с цифрами
+        if (eraseTextField == true) {
+            textField.setText("0");
+            eraseTextField = false;
+        }
+
         if (textField.getText().equals("0")){
             textField.setText("");
         }
@@ -98,15 +108,32 @@ public class Controller {
     }
 
     @FXML
-    void handlerGeneralAction(ActionEvent event) {
+    void handlerGeneralAction(ActionEvent event) { //нажатие кнопок с операциями
         general = ((Button)event.getSource()).getText();
-        prevValue = Double.parseDouble(textField.getText());
-        textField.setText("0");
-        generalClick = true;
+        eraseTextField = true;
+        switch (general){
+            case "AC":
+                textField.setText("0");
+                decimalClick = false;
+                break;
+            case "+/-":
+                if (textField.getText().equals("0")){
+                    break;
+                }
+                textField.setText(String.valueOf(-1.0 * Double.parseDouble(textField.getText())));
+                break;
+            default:
+                general = ((Button)event.getSource()).getText();
+                firstDouble = Double.parseDouble(textField.getText());
+        }
     }
 
     @FXML
-    void handlerDecimalAction(ActionEvent event) {
+    void handlerDecimalAction(ActionEvent event) { //нажатие кнопки с точкой
+        if (eraseTextField==true) {
+            textField.setText("0");
+            eraseTextField = false;
+        }
         if (decimalClick == false) {
             textField.setText(textField.getText()+".");
             decimalClick = true;
@@ -114,33 +141,44 @@ public class Controller {
     }
 
     @FXML
-    void handlerEqualAction(ActionEvent event) {
+    void handlerEqualAction(ActionEvent event) { //нажатие кнопки равно
+        double secondDouble = Double.parseDouble(textField.getText());
+        double result=0;
+        if (general.equals("")){
+            return;
+        }
         switch (general){
             case "+":
-                textField.setText(String.valueOf(prevValue + (Double.parseDouble(textField.getText()))));
+                result = firstDouble + secondDouble;
                 break;
             case "-":
-                textField.setText(String.valueOf(prevValue - (Double.parseDouble(textField.getText()))));
+                result = firstDouble - secondDouble;
                 break;
             case "x":
-                textField.setText(String.valueOf(prevValue * (Double.parseDouble(textField.getText()))));
+                result = firstDouble * secondDouble;
+                break;
+            case "%":
+                result = firstDouble % secondDouble;
                 break;
             case "/":
                 try{
-                    textField.setText(String.valueOf(prevValue / (Double.parseDouble(textField.getText()))));
+                    result = firstDouble / secondDouble;
                 }
                 catch (ArithmeticException e){
-                    textField.setText("ERROR");
                 }
                 break;
         }
 
-        generalClick = false;
+        textField.setText(String.valueOf(result));
+        firstDouble = 0;
         decimalClick = false;
+        general = "";
+        eraseTextField = true;
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
+
         assert nine != null : "fx:id=\"nine\" was not injected: check your FXML file 'sample.fxml'.";
         assert ac != null : "fx:id=\"ac\" was not injected: check your FXML file 'sample.fxml'.";
         assert six != null : "fx:id=\"six\" was not injected: check your FXML file 'sample.fxml'.";
